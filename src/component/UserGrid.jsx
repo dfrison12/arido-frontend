@@ -1,8 +1,24 @@
 import { useFetchUsers } from "../hooks/useFetchUsers";
+import DataTable from "react-data-table-component";
 
-export const UserGrid = () => {
-
-    const { userList, isLoading } = useFetchUsers( );
+export const UserGrid = () => { 
+    const { showUser, isLoading, searcher, search } = useFetchUsers( );
+    
+    /* configuring columns for users table */
+    const columns = [
+        {
+            name: "ID",
+            selector: ( row ) => row.id
+        },
+        {
+            name: "ALIAS",
+            selector: ( row ) => row.alias
+        },
+        {
+            name: "ACTIVED",
+            selector: ( row ) => { if (row.actived) {return "Activo"} else {return "Inactivo"} }
+        },
+    ]
     
     return (
         <div className="container ">
@@ -12,37 +28,14 @@ export const UserGrid = () => {
                     isLoading && ( <h2>Cargando...</h2> )
                 }
             </div>
-            <div className="m-8 ... ">
-                <div className="table">
-                    <div className="table-header-group ...">
-                        <div className="table-row">
-                        <div className="table-cell text-left ...">ID</div>
-                        <div className="table-cell text-left ...">Username</div>
-                        <div className="table-cell text-left ...">Actived</div>
-                        </div>
-                    </div>
-                    <div className="table-row-group">
-                        {       
-                            userList.map( ( user, i ) => (
-                                <div className="table-row"
-                                key={user + i}>
-                                    <div className="table-cell ...">{user.id}</div>
-                                    <div className="table-cell ...">{user.alias}</div>
-                                    <div className="table-cell ...">
-                                        {
-                                            user.actived && ( <h2>Yes</h2> )
-                                        }
-                                        {
-                                            !user.actived && ( <h2>No</h2> )
-                                        }
-                                        </div>
-                                </div>
-                            ))
-                        }
-                        
-                    </div>
-                </div>
-            </div>
+            <input type="text" onChange={ searcher } placeholder="Find User"/>
+            <DataTable
+                columns={ columns }
+                data= { showUser }
+                pagination
+            />
+            
+            
 
         </ div>
     )
