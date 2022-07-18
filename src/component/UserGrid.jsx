@@ -5,7 +5,7 @@ export const UserGrid = () => {
     const { userList, isLoading } = useFetchUsers( );
     
     return (
-        <div className="container m-10 ...">
+        <div className="container ">
             <div className="justify-center ...">
                 <h3> LISTADO DE USUARIOS </h3>
                 {
