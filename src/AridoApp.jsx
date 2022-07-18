@@ -1,9 +1,12 @@
+import {Header} from './component/Header';
+import {Main} from './component/Main';
 
 export const AridoApp = () => {
 
   return (
-    <>
-      <h1>App Funcionando...</h1>
-    </>
+    <div className="font-sans">
+      <Header />
+      <Main />
+    </div>
   )
-}
+};
