@@ -1,5 +1,4 @@
-import {Main} from './component/Main';
-
+import { Main } from './component/Main';
 import { Container } from '@mui/material';
 
 export const App = () => {

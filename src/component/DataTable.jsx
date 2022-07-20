@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -21,7 +21,6 @@ import {
     TableFooter,
     TablePagination,
     IconButton,
-    CircularProgress,
 
 } from '@mui/material';
 
@@ -91,13 +90,16 @@ TablePaginationActions.propTypes = {
 };
 
 export default function DataTable () {
-    const { showUser, isLoading, searcher } = useFetchUsers( );
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const { userList, searcher, getUsers } = useFetchUsers( );
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
 
+    useEffect( () => {
+      getUsers();
+    }, []);
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-      page > 0 ? Math.max(0, (1 + page) * rowsPerPage - showUser.length) : 0;
+      page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userList.length) : 0;
 
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -111,18 +113,7 @@ export default function DataTable () {
     
   return (
     <Box>
-      {
-        isLoading && (
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              margin: '4rem'
-            }}>
-              <CircularProgress />
-          </Box>
-       )
-      }
+      
       <Box
         sx={{
           display: 'flex',
@@ -188,8 +179,8 @@ export default function DataTable () {
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
-              ? showUser.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : showUser
+              ? userList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : userList
             ).map((row) => (
               <TableRow
                 key={row.alias}
@@ -249,7 +240,7 @@ export default function DataTable () {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={3}
-                count={showUser.length}
+                count={userList.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
