@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import DataTable from './DataTable';
+import Form from './Form'
 
 export const Main = () => {
     const [user, setUser] = useState(["Usuario1"]);
@@ -14,7 +15,9 @@ export const Main = () => {
     }
   return (
     <>
-        <DataTable />     
+        <Form /> 
+        <DataTable />
+           
     </>
   )
 }
