@@ -1,16 +1,16 @@
+import axios from 'axios'
+
 export const getAllUsers = async ( ) => {
-    const url = `http://localhost:3001/api/users/`;
-    const resp = await fetch( url );
-    const { data } = await resp.json();
+    const {data} = await axios.get(`http://localhost:3001/api/users/`);
+    const users = data.data
 
-
-    const allUsers = data.map( (user) => ({
+    const allUsers = users.map( (user) => ({
         id: user.id,
         alias: user.alias,
         createdAt: user.createdAt.substr(0,10),
         actived: user.actived
 
     }));
-
+    
     return allUsers 
 }
