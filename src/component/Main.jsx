@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { AddUser } from './AddUser';
-import { UserGrid } from './UserGrid';
+import DataTable from './DataTable';
 
 export const Main = () => {
     const [user, setUser] = useState(["Usuario1"]);
@@ -15,12 +14,7 @@ export const Main = () => {
     }
   return (
     <>
-        {/* <AddUser 
-        onNewUser = {(value) => onAddUser(value) }
-        currentUsers = {user}
-        /> */}
-
-        <UserGrid />     
+        <DataTable />     
     </>
   )
 }

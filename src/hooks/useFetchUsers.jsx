@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
-import { getUser } from '../helpers/getUser';
+import { getAllUsers } from '../services/getUsers';
 
 export const useFetchUsers = ( ) => {
  
     const [userList, setUserList] = useState([ ]);
     const [isLoading, setIsLoading] = useState( true );
     const [search, setSearch] = useState([ ]);
-    const [foundUser, setFoundUser] = useState( []);
 
     const getUsers = async() => {
-        const users = await getUser( );
+        const users = await getAllUsers( );
         setUserList(users);
         setIsLoading(false);
+
+        
     }
+
+
 
     //función de búsqueda
      const searcher = (e) => {
@@ -24,6 +27,7 @@ export const useFetchUsers = ( ) => {
     
     useEffect( () => {
         getUsers();
+        
     }, []);
 
     return {
