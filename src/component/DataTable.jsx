@@ -113,7 +113,6 @@ export default function DataTable () {
     
   return (
     <Box>
-      
       <Box
         sx={{
           display: 'flex',
@@ -122,6 +121,7 @@ export default function DataTable () {
          }}>
               <TextField onChange={searcher} label="Search by alias" />
       </Box>
+      
       <Box
         sx={{
           display: 'flex',
@@ -145,15 +145,15 @@ export default function DataTable () {
             <TableRow>
               <TableCell sx={{
                 fontWeight: 'bold',
-                backgroundColor: "#311b92",
-                color: "#f5f5f5"
+                backgroundColor: "#174d82",
+                color: "#f5f5f5",
                 }}
               >
                 
               </TableCell>
               <TableCell sx={{
                 fontWeight: 'bold',
-                backgroundColor: "#311b92",
+                backgroundColor: "#174d82",
                 color: "#f5f5f5"
                 }}
               >
@@ -161,7 +161,7 @@ export default function DataTable () {
               </TableCell>
               <TableCell sx={{
                 fontWeight: 'bold',
-                backgroundColor: "#311b92",
+                backgroundColor: "#174d82",
                 color: "#f5f5f5"
                 }}
               >
@@ -169,7 +169,7 @@ export default function DataTable () {
               </TableCell>
               <TableCell sx={{
                 fontWeight: 'bold',
-                backgroundColor: "#311b92",
+                backgroundColor: "#174d82",
                 color: "#f5f5f5"              
                 }}
               >
@@ -238,7 +238,7 @@ export default function DataTable () {
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                rowsPerPageOptions={[5, 10, 20, { label: 'All', value: -1 }]}
                 colSpan={3}
                 count={userList.length}
                 rowsPerPage={rowsPerPage}
@@ -258,6 +258,7 @@ export default function DataTable () {
         </Table>
       </TableContainer>
       </Box>
+      
     </Box>
   );
 }

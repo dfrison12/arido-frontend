@@ -7,7 +7,7 @@ export const getAllUsers = async ( ) => {
     const allUsers = users.map( (user) => ({
         id: user.id,
         alias: user.alias,
-        createdAt: user.createdAt.substr(0,10),
+        createdAt: user.createdAt,
         actived: user.actived
 
     }));
